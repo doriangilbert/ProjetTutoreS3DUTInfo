@@ -7,17 +7,21 @@ body, html {
 
 .background {
 
-    background: url("george-bakos-mbDfFpacUcM-unsplash.jpg");
+    /*background: url("../images/george-bakos-mbDfFpacUcM-unsplash.jpg");*/
+    background: url("../images/ja-ma--gOUx23DNks-unsplash.jpg");
     width: 100%;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    /*filter: blur(5px);*/
+    /*filter: blur(5px);*/ /*Pour corriger le problème, il ne faut pas mettre toute la page dans un div background 
+    car si on applique le filtre, il s'appliquera ou toute la page ! Il faudrait mettre uniquement l'image de fond en background, 
+    celle-ci aussi ne doit pas se trouver dans les CSS mais dans le HTML pour fonctionner. Une fois ceci fait, il faudra utiliser 
+    la propriété z-index piur hiérarchier ses éléments dans l'empilement*/
 }
 
-.container {
+.container { /*?*/
     text-align: center;
     color: white;
     width: 100%;
