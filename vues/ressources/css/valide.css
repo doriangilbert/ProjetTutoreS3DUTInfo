@@ -26,7 +26,7 @@ a:hover {
 
 html,
 body {
-  height: auto;
+  height: 100%;
   /*background-color: #333;*/
   background: url("../images/ja-ma--gOUx23DNks-unsplash.jpg");
 }
@@ -44,7 +44,7 @@ body {
 }
 
 .cover-container {
-  max-width: 100% /*42em*/;
+  max-width: 42em;
   background-color: #00000091;
 }
 
@@ -103,29 +103,10 @@ body {
   font-weight: 700;
 }
 
-.wrapper {
-  display: grid;
-  padding-top: 5%;
-  text-align: center;
-  grid-template-columns: repeat(8, 5rem);
-  grid-template-rows: repeat(auto, 5rem);
-  grid-gap: 5rem;
-}
-
-.my-col {
-  /*padding-bottom: 6rem;*/
-  padding-top: 2rem;
-}
-
-input[type="number"]{
-  color:black;
-}
-
 
 /*
  * Footer
  */
 .mastfoot {
   color: #FFFFFF;
-  margin-top: 1rem;
 }
