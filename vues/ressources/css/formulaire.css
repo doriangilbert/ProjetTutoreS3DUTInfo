@@ -44,6 +44,7 @@ body {
 }
 
 .cover-container {
+  min-width: 42em;
   max-width: 100% /*42em*/;
   background-color: #00000091;
 }
