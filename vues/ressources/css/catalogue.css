@@ -104,15 +104,6 @@ body {
   font-weight: 700;
 }
 
-.wrapper {
-  display: grid;
-  padding-top: 5%;
-  text-align: center;
-  grid-template-columns: repeat(8, 5rem);
-  grid-template-rows: repeat(auto, 5rem);
-  grid-gap: 5rem;
-}
-
 .my-col {
   /*padding-bottom: 6rem;*/
   padding-top: 2rem;

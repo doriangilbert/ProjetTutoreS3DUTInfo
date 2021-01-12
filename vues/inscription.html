@@ -26,21 +26,21 @@
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="#">Accueil</a>
-            <a class="nav-link" href="#">Catalogue</a>
-            <a class="nav-link active" href="#">Mon Compte</a>
+            <a class="nav-link" href="index.html">Accueil</a>
+            <a class="nav-link" href="catalogue.html">Catalogue</a>
+            <a class="nav-link active" href="connexion.html">Mon Compte</a>
           </nav>
         </div>
       </header>
 
       <main class="form-signin">
-        <form>
+        <form form method="post" action="../controleurs/inscription.php">
           <h1 class="h3 mb-3 fw-normal">Inscrivez vous</h1>
-          <input type="text" id="inputNom" class="form-control" placeholder="Nom" required autofocus>
-          <input type="text" id="inputPrenom" class="form-control" placeholder="Prénom" required>
-          <input type="text" id="inputAdresse" class="form-control" placeholder="Adresse postale" required>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+          <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nom" required autofocus>
+          <input type="text" id="inputPrenom" class="form-control" placeholder="Prénom" name="prenom" required>
+          <input type="text" id="inputAdresse" class="form-control" placeholder="Adresse postale" name="adresse" required>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" name="email" required>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="motDePasse" required>
           <br>
           <button class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire</button>
         </form>

@@ -26,20 +26,20 @@
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="#">Accueil</a>
-            <a class="nav-link" href="#">Catalogue</a>
-            <a class="nav-link active" href="#">Mon Compte</a>
+            <a class="nav-link" href="index.html">Accueil</a>
+            <a class="nav-link" href="catalogue.html">Catalogue</a>
+            <a class="nav-link active" href="connexion.html">Mon Compte</a>
           </nav>
         </div>
       </header>
 
       <main class="form-signin">
-        <form>
+        <form method="post" action="../controleurs/connexion.php">
           <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required autofocus>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" name="email" required autofocus>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="motDePasse" required>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
-          <a class="nav-link" href="#">Créer un compte</a>
+          <a class="nav-link" href="inscription.html">Créer un compte</a>
         </form>
       </main>
 
