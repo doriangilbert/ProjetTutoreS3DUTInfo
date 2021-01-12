@@ -11,7 +11,7 @@
 
     if(isset($_POST['date']))
     {
-        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, '', CAST('". $date ."' AS DATE)), '23-11-2020')") or die("Erreur d'insertion");
+        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, '', CAST('". $date ."' AS DATE)), '')") or die("Erreur d'insertion");
         header('Location: ../vues/valide.html');
     }
 ?>
