@@ -7,16 +7,16 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Livraison ponctuelle</title>
+    <title>Commandes</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="ressources/css/formulaire.css" rel="stylesheet">
+    <link href="ressources/css/prod.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
@@ -33,14 +33,33 @@
         </div>
       </header>
 
-      <main class="form-signin">
-        <form method="post" action="../controleurs/formulaire_ponctuelle.php">
-          <h1 class="h3 mb-3 fw-normal">Livraison ponctuelle</h1>
-          <p>Ce type de livraison est réservé aux curieux qui souhaitent faire une livraison une fois pour essayer.</p>  
-          <input type="date" id="inputDate" class="form-control" name="date" required autofocus>
-          <br>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
-        </form>
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Gestion des commandes</h1>
+        <?php
+          require_once("../modeles/bd.php");
+          $host = "localhost";
+          $user = "admin";
+          $bdd = "tutore_s3";
+          $passwd = "admin";
+          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+          $result=mysqli_query($co,"SELECT * FROM livraison ORDER BY numLivraison");
+          if(false!==$result)
+          {
+              if(mysqli_num_rows($result)>0)
+              {
+                  echo "<table>";
+                  $row = mysqli_fetch_assoc($result);
+                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
+                  do
+                  {
+                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
+                  }
+                  while($row = mysqli_fetch_row($result));
+                  echo "</table>";
+              }
+              mysqli_free_result($result);    
+          }
+        ?>
       </main>
 
       <footer class="mastfoot mt-auto">
