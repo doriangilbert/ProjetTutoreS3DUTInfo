@@ -14,6 +14,8 @@ $rythme=$_POST["rythme"];
 $nbPers=$_POST["nbPers"];
 $limitePrix=$_POST["limitePrix"];
 
+/*$date = STR_TO_DATE('$date', '%m/%d/%Y')*/
+
 if(isset($_POST['date']) && isset($_POST['rythme']) && isset($_POST['nbPers']) && isset($_POST['limitePrix']))
 {
     $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('reguliere', $limitePrix, $rythme, $date, '', $nbPers)") or die("Erreur d'insertion");
