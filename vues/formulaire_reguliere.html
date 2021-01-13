@@ -34,18 +34,19 @@
       </header>
 
       <main class="form-signin">
-        <form>
+        <form method="post" action="../controleurs/formulaire_reguliere.php">
           <h1 class="h3 mb-3 fw-normal">Livraison régulière de paniers de légumes</h1>
           <p>Si vous êtes un grand fan de fruits et de légumes alors vous avez la possibilité de demander la livraison régulière de paniers de légumes composés au gré des saisons.</p>  
-          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" required autofocus>
-          <select id="inputRythmeLivr" class="form-control" placeholder="Rythme de livraison">
+          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" name="nbPers" required autofocus>
+          <select id="inputRythmeLivr" class="form-control" placeholder="Rythme de livraison" name="rythme">
             <option value="1">Toutes les semaines</option>
             <option value="2">2 fois par semaine</option>
             <option value="0.5">1 semaine sur 2</option>
             <option value="0.33">1 semaine sur 3</option>
             <option value="0.25">Tous les mois</option>
           </select>
-          <input type="date" id="inputDate" class="form-control" required>
+          <input type="date" id="inputDate" class="form-control" name="date" required>
+          <input type="number" id="inputLimPrix" class="form-control" placeholder="Limite de prix" name="limitePrix" required>
           <br>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
         </form>

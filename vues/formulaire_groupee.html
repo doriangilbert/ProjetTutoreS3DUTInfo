@@ -34,12 +34,11 @@
       </header>
 
       <main class="form-signin">
-        <form>
+        <form method="post" action="../controleurs/formulaire_groupee.php">
           <h1 class="h3 mb-3 fw-normal">Livraison groupée</h1>
           <p>Si vous préférez limiter votre impact sur l'environnement tout en profitant de fruits et de légumes de qualité alors ce type de livraison est fait pour vous.</p>
-          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" required autofocus>
-          <input type="date" id="inputDate" class="form-control" required>
-          <input type="number" id="inputLimPrix" class="form-control" placeholder="Limite de prix" required>
+          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" name="nbPers" required autofocus>
+          <input type="date" id="inputDate" class="form-control" name="date" required>
           <br>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
         </form>

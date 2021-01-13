@@ -42,7 +42,7 @@
           $bdd = "tutore_s3";
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
-          $result=mysqli_query($co,"SELECT * FROM livraison ORDER BY numLivraison");
+          $result=mysqli_query($co,"SELECT numClient,numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne,nom,prenom,adresse,email FROM livraison NATURAL JOIN passe NATURAL JOIN client ORDER BY numLivraison");
           if(false!==$result)
           {
               if(mysqli_num_rows($result)>0)

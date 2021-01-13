@@ -1,5 +1,7 @@
 
 <?php
+    require_once("../modeles/bd.php");
+    require_once("../modeles/membre.php");  
 
     $host = "localhost";
     $user = "admin";
@@ -11,7 +13,14 @@
 
     if(isset($_POST['date']))
     {
-        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, '', CAST('". $date ."' AS DATE)), '')") or die("Erreur d'insertion");
+        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, 0, $date,'', 1)") or die("Erreur d'insertion");
+        /*A corriger*/
+    }
+
+    if ($result == false) {
+        header('Location: ../vues/invalide.html');
+    }
+    else {
         header('Location: ../vues/valide.html');
     }
 ?>

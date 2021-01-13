@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Espace producteur</title>
+    <title>Modification stocks</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
 
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="ressources/css/livraison.css" rel="stylesheet">
+    <link href="ressources/css/prod.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
@@ -34,33 +34,24 @@
       </header>
 
       <main class="inner cover">
-        <h1>Espace producteur</h1>   
-
-        <br>
-
-        <a href="prod_stocks.php" class = "btn btn-lg btn-secondary" role="button">Gestion des stocks</a>        
-        <p>Ici vous pouvez ajouter des stocks de certains produits ou en ajouter de nouveau.</p>
-
-        <br>
-
-        <a href="prod_statut.php" class = "btn btn-lg btn-secondary" role="button">Statut des commandes</a>
-        <p>Ici vous pouvez gérer et consulter le statut des commandes.<p>  
-
-        <br>
-
-        <a href="prod_commandes.php" class = "btn btn-lg btn-secondary" role="button">Consultation des commandes de la semaine</a>
-        <p>Comme son nom l'indique, ici vous pouvez consulter les commandes de la semaine.</p>
-        
-        <br>
-
-        <a href="prod_planning.php" class = "btn btn-lg btn-secondary" role="button">Planning livraison</a>
-        <p>Ici vous pouvez consulter les plannings de livraison de votre entreprise préférée.</p>
-
-        <br>
-
-        <a href="../controleurs/deconnexion.php" class = "btn btn-lg btn-secondary" role="button">Déconnexion</a>
-        <p>Deconnectez vous du site.</p>
-
+        <h1>Modifier les stocks</h1>   
+        <form form method="post" action="../controleurs/ajout_produit.php">
+            <h1 class="h3 mb-3 fw-normal">Ajouter un produit</h1>
+            <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nomFruitLeg" required autofocus>
+            <input type="text" id="inputFamille" class="form-control" placeholder="Famille" name="famille" required>
+            <input type="number" id="inputQuantité" class="form-control" placeholder="Quantité" name="quantite" required>
+            <input type="number" step=0.01 id="inputPrix" class="form-control" placeholder="Prix" name="prix" required>
+            <input type="number" step=0.01 id="inputPromotion" class="form-control" placeholder="Promotion" name="promotion" required>
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" style="margin-bottom: 1rem;">Ajouter</button>
+        </form>
+        <form form method="post" action="../controleurs/suppr_produit.php">
+            <h1 class="h3 mb-3 fw-normal">Supprimer un produit</h1>
+            <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nomFruitLeg" required autofocus>
+            <input type="text" id="inputFamille" class="form-control" placeholder="Famille" name="famille" required>
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Supprimer</button>
+        </form>
       </main>
 
       <footer class="mastfoot mt-auto">

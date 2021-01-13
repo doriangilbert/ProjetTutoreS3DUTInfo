@@ -60,6 +60,7 @@
               mysqli_free_result($result);    
           }
         ?>
+        <a href="modif_stocks.html" class = "btn btn-lg btn-secondary" role="button" style="margin-top: 1rem">Modifier le stock</a>
       </main>
 
       <footer class="mastfoot mt-auto">

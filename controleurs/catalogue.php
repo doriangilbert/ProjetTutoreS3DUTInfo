@@ -1,10 +1,3 @@
 <?php
-    require_once('../modeles/bd.php');
-    require_once('../modeles/membre.php');
-
-
-
-
-
-
+    header('Location: ../vues/livraison.html');
 ?>

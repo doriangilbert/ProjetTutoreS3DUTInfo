@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Espace producteur</title>
+    <title>Commandes</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
 
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="ressources/css/livraison.css" rel="stylesheet">
+    <link href="ressources/css/prod.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
@@ -33,34 +33,36 @@
         </div>
       </header>
 
-      <main class="inner cover">
-        <h1>Espace producteur</h1>   
-
-        <br>
-
-        <a href="prod_stocks.php" class = "btn btn-lg btn-secondary" role="button">Gestion des stocks</a>        
-        <p>Ici vous pouvez ajouter des stocks de certains produits ou en ajouter de nouveau.</p>
-
-        <br>
-
-        <a href="prod_statut.php" class = "btn btn-lg btn-secondary" role="button">Statut des commandes</a>
-        <p>Ici vous pouvez gérer et consulter le statut des commandes.<p>  
-
-        <br>
-
-        <a href="prod_commandes.php" class = "btn btn-lg btn-secondary" role="button">Consultation des commandes de la semaine</a>
-        <p>Comme son nom l'indique, ici vous pouvez consulter les commandes de la semaine.</p>
-        
-        <br>
-
-        <a href="prod_planning.php" class = "btn btn-lg btn-secondary" role="button">Planning livraison</a>
-        <p>Ici vous pouvez consulter les plannings de livraison de votre entreprise préférée.</p>
-
-        <br>
-
-        <a href="../controleurs/deconnexion.php" class = "btn btn-lg btn-secondary" role="button">Déconnexion</a>
-        <p>Deconnectez vous du site.</p>
-
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Gestion des commandes</h1>
+        <?php
+          session_start();
+          require_once("../modeles/bd.php");
+          $host = "localhost";
+          $user = "admin";
+          $bdd = "tutore_s3";
+          $passwd = "admin";
+          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+          $email=$_SESSION["email"];
+          $motDePasse=$_SESSION["motDePasse"];
+          $result=mysqli_query($co,"SELECT numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
+          if(false!==$result)
+          {
+              if(mysqli_num_rows($result)>0)
+              {
+                  echo "<table>";
+                  $row = mysqli_fetch_assoc($result);
+                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
+                  do
+                  {
+                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
+                  }
+                  while($row = mysqli_fetch_row($result));
+                  echo "</table>";
+              }
+              mysqli_free_result($result);    
+          }
+        ?>
       </main>
 
       <footer class="mastfoot mt-auto">
