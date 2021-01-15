@@ -9,11 +9,13 @@
     $passwd = "admin";
     $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
     
-    $date=$_POST["date"];
+    $date = $_POST["date"];
+    $today = date("Y-m-d");
+    $date = date('Y-m-d',strtotime($date));
 
     if(isset($_POST['date']))
     {
-        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, 0, $date,'', 1)") or die("Erreur d'insertion");
+        $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, 0, '$date','$today', 1)");
         /*A corriger*/
     }
 

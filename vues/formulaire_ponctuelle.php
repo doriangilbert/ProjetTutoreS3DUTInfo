@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Livraison groupée</title>
+    <title>LegFruIUT - Livraison ponctuelle</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -34,11 +34,16 @@
       </header>
 
       <main class="form-signin">
-        <form method="post" action="../controleurs/formulaire_groupee.php">
-          <h1 class="h3 mb-3 fw-normal">Livraison groupée</h1>
-          <p>Si vous préférez limiter votre impact sur l'environnement tout en profitant de fruits et de légumes de qualité alors ce type de livraison est fait pour vous.</p>
-          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" name="nbPers" required autofocus>
-          <input type="date" id="inputDate" class="form-control" name="date" required>
+        <form method="post" action="../controleurs/formulaire_ponctuelle.php">
+          <h1 class="h3 mb-3 fw-normal">Livraison ponctuelle</h1>
+          <p>Ce type de livraison est réservé aux curieux qui souhaitent faire une livraison une fois pour essayer.</p>
+          
+          <?php
+          $today = date("Y-m-d");
+          $future = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
+          ?>
+
+          <input type="date" id="inputDate" class="form-control" name="date" value=<?php echo $today ?> min=<?php echo $today ?> max=<?php echo $future ?> required autofocus>
           <br>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
         </form>

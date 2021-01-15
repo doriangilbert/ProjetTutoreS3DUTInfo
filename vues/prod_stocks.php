@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Stocks</title>
+    <title>LegFruIUT - Stocks</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
 
@@ -42,6 +42,7 @@
           $bdd = "tutore_s3";
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+          echo "<form>"; /*A retirer une fois fait dans le catalogue*/
           $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
           if(false!==$result)
           {
@@ -49,16 +50,19 @@
               {
                   echo "<table>";
                   $row = mysqli_fetch_assoc($result);
-                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
+                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>lol</th></tr>";
                   do
                   {
-                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
+                      echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                      max='100'></td></tr>"; /*<td><input type='number' id='inputNb' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                      max='100'></td> A retirer une fois fait dans le catalogue*/
                   }
                   while($row = mysqli_fetch_row($result));
                   echo "</table>";
               }
               mysqli_free_result($result);    
           }
+          echo "</form>"; /*A retirer une fois fait dans le catalogue*/
         ?>
         <a href="modif_stocks.html" class = "btn btn-lg btn-secondary" role="button" style="margin-top: 1rem">Modifier le stock</a>
       </main>

@@ -7,16 +7,16 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>LegFruIUT - Modification stocks</title>
+    <title>LegFruIUT - Livraison groupée</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="ressources/css/prod.css" rel="stylesheet">
+    <link href="ressources/css/formulaire.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
@@ -33,24 +33,20 @@
         </div>
       </header>
 
-      <main class="inner cover">
-        <h1>Modifier les stocks</h1>   
-        <form form method="post" action="../controleurs/ajout_produit.php">
-            <h1 class="h3 mb-3 fw-normal">Ajouter un produit</h1>
-            <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nomFruitLeg" required autofocus>
-            <input type="text" id="inputFamille" class="form-control" placeholder="Famille" name="famille" required>
-            <input type="number" id="inputQuantité" class="form-control" placeholder="Quantité" name="quantite" required>
-            <input type="number" step=0.01 id="inputPrix" class="form-control" placeholder="Prix" name="prix" required>
-            <input type="number" step=0.01 id="inputPromotion" class="form-control" placeholder="Promotion" name="promotion" required>
-            <br>
-            <button class="w-100 btn btn-lg btn-primary" type="submit" style="margin-bottom: 1rem;">Ajouter</button>
-        </form>
-        <form form method="post" action="../controleurs/suppr_produit.php">
-            <h1 class="h3 mb-3 fw-normal">Supprimer un produit</h1>
-            <input type="text" id="inputNom" class="form-control" placeholder="Nom" name="nomFruitLeg" required autofocus>
-            <input type="text" id="inputFamille" class="form-control" placeholder="Famille" name="famille" required>
-            <br>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Supprimer</button>
+      <main class="form-signin">
+        <form method="post" action="../controleurs/formulaire_groupee.php">
+          <h1 class="h3 mb-3 fw-normal">Livraison groupée</h1>
+          <p>Si vous préférez limiter votre impact sur l'environnement tout en profitant de fruits et de légumes de qualité alors ce type de livraison est fait pour vous.</p>
+          
+          <?php
+          $today = date("Y-m-d");
+          $future = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
+          ?>
+
+          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" name="nbPers" required autofocus>
+          <input type="date" id="inputDate" class="form-control" name="date" value=<?php echo $today ?> min=<?php echo $today ?> max=<?php echo $future ?>>
+          <br>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
         </form>
       </main>
 

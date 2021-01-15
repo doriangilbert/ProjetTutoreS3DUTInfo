@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>Livraison ponctuelle</title>
+    <title>LegFruIUT - Livraison régulière</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
 
@@ -34,10 +34,25 @@
       </header>
 
       <main class="form-signin">
-        <form method="post" action="../controleurs/formulaire_ponctuelle.php">
-          <h1 class="h3 mb-3 fw-normal">Livraison ponctuelle</h1>
-          <p>Ce type de livraison est réservé aux curieux qui souhaitent faire une livraison une fois pour essayer.</p>  
-          <input type="date" id="inputDate" class="form-control" name="date" required autofocus>
+        <form method="post" action="../controleurs/formulaire_reguliere.php">
+          <h1 class="h3 mb-3 fw-normal">Livraison régulière de paniers de légumes</h1>
+          <p>Si vous êtes un grand fan de fruits et de légumes alors vous avez la possibilité de demander la livraison régulière de paniers de légumes surprises composés au gré des saisons.</p>  
+          <input type="number" id="inputNbPers" class="form-control" placeholder="Nombre de personnes" name="nbPers" required autofocus>
+          <select id="inputRythmeLivr" class="form-control" placeholder="Rythme de livraison" name="rythme">
+            <option value="1">Toutes les semaines</option>
+            <option value="2">2 fois par semaine</option>
+            <option value="0.5">1 semaine sur 2</option>
+            <option value="0.33">1 semaine sur 3</option>
+            <option value="0.25">Tous les mois</option>
+          </select>
+
+          <?php
+          $today = date("Y-m-d");
+          $future = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 365 day"));
+          ?>
+
+          <input type="date" id="inputDate" class="form-control" name="date" value=<?php echo $today ?> min=<?php echo $today ?> max=<?php echo $future ?> required>
+          <input type="number" id="inputLimPrix" class="form-control" placeholder="Limite de prix" name="limitePrix" required>
           <br>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Valider ma commande</button>
         </form>

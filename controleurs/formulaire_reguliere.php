@@ -9,16 +9,17 @@ $bdd = "tutore_s3";
 $passwd = "admin";
 $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
 
-$date=$_POST["date"];
-$rythme=$_POST["rythme"];
-$nbPers=$_POST["nbPers"];
-$limitePrix=$_POST["limitePrix"];
+$date = $_POST["date"];
+$rythme = $_POST["rythme"];
+$nbPers = $_POST["nbPers"];
+$limitePrix = $_POST["limitePrix"];
 
-/*$date = STR_TO_DATE('$date', '%m/%d/%Y')*/
+$today = date("Y-m-d");
+$date = date('Y-m-d',strtotime($date));
 
 if(isset($_POST['date']) && isset($_POST['rythme']) && isset($_POST['nbPers']) && isset($_POST['limitePrix']))
 {
-    $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('reguliere', $limitePrix, $rythme, $date, '', $nbPers)") or die("Erreur d'insertion");
+    $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythme', '$date', '$today', '$nbPers')");
 }
 
 if ($result == false) {
