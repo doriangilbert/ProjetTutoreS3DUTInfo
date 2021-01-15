@@ -27,7 +27,7 @@
           <h3 class="masthead-brand">LegFruIUT</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="index.html">Accueil</a>
-            <a class="nav-link" href="catalogue.html">Catalogue</a>
+            <a class="nav-link" href="catalogue.php">Catalogue</a>
             <a class="nav-link" href="connexion.html">Mon Compte</a>
           </nav>
         </div>
@@ -44,25 +44,39 @@
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
           $email=$_SESSION["email"];
-          $motDePasse=$_SESSION["motDePasse"];
-          $result=mysqli_query($co,"SELECT numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
-          if(false!==$result)
+          if(!isset($_SESSION["email"]))
           {
-              if(mysqli_num_rows($result)>0)
-              {
-                  echo "<table>";
-                  $row = mysqli_fetch_assoc($result);
-                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
-                  do
-                  {
-                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
-                  }
-                  while($row = mysqli_fetch_row($result));
-                  echo "</table>";
-              }
-              mysqli_free_result($result);    
+            header('Location: ../vues/index.html');
           }
+          $motDePasse=$_SESSION["motDePasse"];
+
+          ?>
+
+          <form method="post" action="../controleurs/suppr_commande.php">
+            <?php
+            $result=mysqli_query($co,"SELECT numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
+            $var=1;
+            if(false!==$result)
+            {
+                if(mysqli_num_rows($result)>0)
+                {
+                    echo "<table>";
+                    $row = mysqli_fetch_assoc($result);
+                    echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Commande à supprimer</th></tr>";
+                    do
+                    {
+                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='button' value='Supprimer' name=echo $var+1></td></tr>";
+                    }
+                    while($row = mysqli_fetch_row($result));
+                    echo "</table>";
+                }
+                mysqli_free_result($result);    
+            }
+
+            ?>
+          </form>
         ?>
+
       </main>
 
       <footer class="mastfoot mt-auto">

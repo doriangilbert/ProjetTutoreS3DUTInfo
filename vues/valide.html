@@ -27,7 +27,7 @@
           <h3 class="masthead-brand">LegFruIUT</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="index.html">Accueil</a>
-            <a class="nav-link" href="catalogue.html">Catalogue</a>
+            <a class="nav-link" href="catalogue.php">Catalogue</a>
             <a class="nav-link" href="connexion.html">Mon Compte</a>
           </nav>
         </div>

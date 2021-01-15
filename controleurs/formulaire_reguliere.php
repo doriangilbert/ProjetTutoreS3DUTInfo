@@ -1,7 +1,7 @@
 
 <?php
 require_once("../modeles/bd.php");
-require_once("../modeles/membre.php");
+require_once("../modeles/commande.php");
 
 $host = "localhost";
 $user = "admin";
@@ -19,7 +19,10 @@ $date = date('Y-m-d',strtotime($date));
 
 if(isset($_POST['date']) && isset($_POST['rythme']) && isset($_POST['nbPers']) && isset($_POST['limitePrix']))
 {
-    $result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythme', '$date', '$today', '$nbPers')");
+    $result=new Commande($co, $limitePrix, $rythme, $date, $today, $nbPers);
+
+    /*$result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythme', '$date', '$today', '$nbPers')");
+    */
 }
 
 if ($result == false) {

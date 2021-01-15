@@ -105,12 +105,18 @@ body {
 }
 
 .my-col {
-  /*padding-bottom: 6rem;*/
+  padding-bottom: 6rem;
   padding-top: 2rem;
 }
 
-input[type="number"]{
-  color:black;
+table, th, td {
+    padding: .5rem;
+    border: 0.1rem solid white;
+}
+
+.btn-lg {
+  background-color: #5FE77D;
+  border: none;
 }
 
 

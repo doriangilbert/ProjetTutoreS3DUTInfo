@@ -27,7 +27,7 @@
           <h3 class="masthead-brand">LegFruIUT</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="index.html">Accueil</a>
-            <a class="nav-link" href="catalogue.html">Catalogue</a>
+            <a class="nav-link" href="catalogue.php">Catalogue</a>
             <a class="nav-link active" href="connexion.html">Mon Compte</a>
           </nav>
         </div>
@@ -36,43 +36,46 @@
       <main class="inner cover">
         
         <div class="col-md-12 col-lg-12 order-md-last">
+
+          <form method="post" action="../controleurs/recapitulatif.php">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="my-0">Your cart</span>
+              <span class="my-0">Votre commande</span>
             </h4>
+
             <ul class="list-group mb-3">
               <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                   <h6 class="my-0">Banane</h6>
-                  <small class="text-muted">Qté : 5</small>
+                  <small class="text-muted">Qté : 2, Prix au kg : 1.20 €</small>
                 </div>
-                <span class="text-muted">$12</span>
+                <span class="text-muted">6€</span>
               </li>
+
               <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
-                  <h6 class="my-0">Second product</h6>
-                  <small class="text-muted">Brief description</small>
+                  <h6 class="my-0">Orange</h6>
+                  <small class="text-muted">Qté : 3, Prix au kg : 0.70 €</small>
                 </div>
-                <span class="text-muted">$8</span>
+                <span class="text-muted">1.2€</span>
               </li>
             
               <span class="text-success">
               <li class="list-group-item d-flex justify-content-between">
-                <span>Total (USD)</span>
-                $20
+                <span>Total (Euros)</span>
+                7.20€
               </li>
             </span>
             </ul>
         
             <!--<form class="card p-2">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Promo code">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
+                  <button class="btn btn-lg btn-secondary" style="margin-top: 3rem;" type="submit">Valider ma commande</button>
+                </div>
               </div>
-            </form>-->
-        </div>
+            </div>
 
+          </form>
 
-      </main>
+ -->        </div>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">

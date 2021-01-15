@@ -18,7 +18,7 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
   <!-- Custom styles for this template -->
-  <link href="ressources/css/catalogue.css" rel="stylesheet">
+  <link href="ressources/css/prod.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -29,7 +29,7 @@
         <h3 class="masthead-brand">LegFruIUT</h3>
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link" href="index.html">Accueil</a>
-          <a class="nav-link active" href="catalogue.html">Catalogue</a>
+          <a class="nav-link active" href="catalogue.php">Catalogue</a>
           <a class="nav-link" href="connexion.html">Mon Compte</a>
         </nav>
       </div>
@@ -39,7 +39,7 @@
 
       <h1 class="cover-heading">Catalogue</h1>
       
-      <form method="post" action="../controleurs/catalogue.php">
+      <!-- <form method="post" action="../controleurs/catalogue.php">
           <div class="container my-container">
 
             <div class="row my-row">
@@ -362,13 +362,40 @@
                 </div>
               </div>
               
-      </form>
+      </form> -->
+
+      <?php
+          require_once("../modeles/bd.php");
+          $host = "localhost";
+          $user = "admin";
+          $bdd = "tutore_s3";
+          $passwd = "admin";
+          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+          $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
+          if(false!==$result)
+          {
+              if(mysqli_num_rows($result)>0)
+              {
+                  echo "<table>";
+                  $row = mysqli_fetch_assoc($result);
+                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Quantité désirée</th></tr>";
+                  do
+                  {
+                      echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                      max='100'></td></tr>";
+                  }
+                  while($row = mysqli_fetch_row($result));
+                  echo "</table>";
+              }
+              mysqli_free_result($result);    
+          }
+        ?>
 
     </main>
     
     <br>
 
-    <footer class="mastfoot">
+    <footer class="mastfoot mt-auto">
       <div class="inner">
         <p>Site réalisé par Dorian GILBERT et Matteo SERRANO</p>
       </div>
