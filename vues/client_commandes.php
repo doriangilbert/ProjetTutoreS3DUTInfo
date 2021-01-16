@@ -72,6 +72,7 @@
                 }
                 mysqli_free_result($result);    
             }
+            
             ?>
           </form>
         ?>

@@ -33,7 +33,7 @@
         </div>
       </header>
 
-      <main class="inner cover">
+      <main class="inner cover"> <!--Peut-être que faire un récapitulatif n'est pas nécessaire-->
         
         <div class="col-md-12 col-lg-12 order-md-last">
 
@@ -71,11 +71,30 @@
                   <button class="btn btn-lg btn-secondary" style="margin-top: 3rem;" type="submit">Valider ma commande</button>
                 </div>
               </div>
-            </div>
+            </div>  -->
+
+          <?php
+          session_start();
+          require_once("../modeles/bd.php");
+          $host = "localhost";
+          $user = "admin";
+          $bdd = "tutore_s3";
+          $passwd = "admin";
+          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+          $email=$_SESSION["email"];
+          if(!isset($_SESSION["email"])) //A voir si on autorise les commandes si non connecté
+          {
+            header('Location: ../vues/index.html');
+          }
+          $motDePasse=$_SESSION["motDePasse"];
+
+          ?>
+
+          <!--Récupérer les articles du catalogue -->
 
           </form>
 
- -->        </div>
+        </div>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">

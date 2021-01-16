@@ -67,10 +67,11 @@
         }
 
         public function afficher_contenu($numLivraison) {
-            mysqli_query($co,"SELECT nomFruitLeg, famille, quantite, prix FROM livraison NATURAL JOIN contient NATURAL JOIN produit WHERE numLivraison='$numLivraison'");
+            mysqli_query($co,"SELECT nomFruitLeg, famille, quantite, prix FROM livraison NATURAL JOIN contient NATURAL JOIN produit WHERE numLivraison='$numLivraison'");           
+        }
 
-            //Commentaire
-            
+        public function supprimer_article($nomFruitLeg) {
+            mysqli_query($co,"DELETE FROM livraison NATURAL JOIN contient NATURAL JOIN produit WHERE nomFruitLeg='$nomFruitLeg' AND numLivraison='$this->numLivraison'");           
         }
     }
 ?>
