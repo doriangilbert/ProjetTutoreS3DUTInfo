@@ -65,14 +65,13 @@
                     echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Commande à supprimer</th></tr>";
                     do
                     {
-                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='button' value='Supprimer' name=echo $var+1></td></tr>";
+                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='button' value='Supprimer' name='$row['numLivraison']'></td></tr>";
                     }
                     while($row = mysqli_fetch_row($result));
                     echo "</table>";
                 }
                 mysqli_free_result($result);    
             }
-
             ?>
           </form>
         ?>

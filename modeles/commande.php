@@ -50,10 +50,27 @@
             mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('ponctuelle', 0, 0, '$dateLivraison' , '$dateCommande' , 1)");
         }
 
-        public function suppression() {
+        public function suppression_commande() {
             $result=mysqli_query($this->co,"DELETE FROM livraison WHERE numLivraison='$this->numLivraison'")or die("Erreur");
             $result=mysqli_query($this->co,"DELETE FROM passe WHERE numLivraison='$this->numLivraison'")or die("Erreur");
             $result=mysqli_query($this->co,"DELETE FROM contient WHERE numLivraison='$this->numLivraison'")or die("Erreur");
+        }
+
+        public function modif_commande($numLivraison,$numProduit,$quantite,$dateLivraison) {
+            if($qte >= 1)
+            {
+                mysqli_query($this->co,"UPDATE livraison NATURAL JOIN contient NATURAL JOIN produit SET dateLivraison='$dateLivraison', quantite='$qte' WHERE numLivraison='$this->numLivraison' AND numProduit ='$numProduit'")or die("erreur");
+            }
+            else {
+                mysqli_query($this->co,"DELETE FROM livraison NATURAL JOIN contient WHERE numLivraison='$this->numLivraison' AND numProduit ='$numProduit'")or die("Erreur");
+            }
+        }
+
+        public function afficher_contenu($numLivraison) {
+            mysqli_query($co,"SELECT nomFruitLeg, famille, quantite, prix FROM livraison NATURAL JOIN contient NATURAL JOIN produit WHERE numLivraison='$numLivraison'");
+
+            //Commentaire
+            
         }
     }
 ?>
