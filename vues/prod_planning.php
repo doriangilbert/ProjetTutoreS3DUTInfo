@@ -35,6 +35,36 @@
 
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Planning des commandes</h1>
+
+        <?php
+          require_once("../modeles/bd.php");
+          $host = "localhost";
+          $user = "admin";
+          $bdd = "tutore_s3";
+          $passwd = "admin";
+          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+
+          $jour = date("Y-m-d");
+          $semaine = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 1 week"));
+
+          $result=mysqli_query($co,"SELECT numClient,numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,statut,dateLivraison,dateCommande,nbPersonne,nom,prenom,adresse,email FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE dateLivraison BETWEEN '$jour' AND '$semaine' AND statut='acceptee' ORDER BY numLivraison");
+          if(false!==$result)
+          {
+              if(mysqli_num_rows($result)>0)
+              {
+                  echo "<table>";
+                  $row = mysqli_fetch_assoc($result);
+                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
+                  do
+                  {
+                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
+                  }
+                  while($row = mysqli_fetch_row($result));
+                  echo "</table>";
+              }
+              mysqli_free_result($result);    
+          }
+        ?>
         
       </main>
 

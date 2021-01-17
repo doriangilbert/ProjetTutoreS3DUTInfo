@@ -42,7 +42,11 @@
           $bdd = "tutore_s3";
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
-          $result=mysqli_query($co,"SELECT numClient,numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne,nom,prenom,adresse,email FROM livraison NATURAL JOIN passe NATURAL JOIN client ORDER BY numLivraison");
+
+          $jour = date("Y-m-d");
+          $semaine = date('Y-m-d',strtotime(date("Y-m-d", mktime()) . " + 1 week"));
+
+          $result=mysqli_query($co,"SELECT numClient,numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne,nom,prenom,adresse,email FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE dateLivraison BETWEEN '$jour' AND '$semaine' ORDER BY numLivraison");
           if(false!==$result)
           {
               if(mysqli_num_rows($result)>0)

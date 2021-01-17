@@ -9,12 +9,13 @@
         private $adresse;
         private $email;
         private $motDePasse;
+        private $quartier;
 
         function __construct() {
             $argv = func_get_args();
             switch( func_num_args() ) {
-                case 6:
-                    self::__construct1($argv[0], $argv[1], $argv[2], $argv[3], $argv[4], $argv[5]);
+                case 7:
+                    self::__construct1($argv[0], $argv[1], $argv[2], $argv[3], $argv[4], $argv[5], $argv[6]);
                     break;
                 case 3:
                     self::__construct2($argv[0], $argv[1], $argv[2]);
@@ -22,14 +23,15 @@
              }
         }
     
-        function __construct1($co, $nom, $prenom, $adresse, $email, $motDePasse) {
+        function __construct1($co, $nom, $prenom, $adresse, $email, $motDePasse, $quartier) {
             $this->co=$co;
             $this->nom=$nom;
             $this->prenom=$prenom;
             $this->adresse=$adresse;
             $this->email=$email;
             $this->motDePasse=$motDePasse;
-            mysqli_query($co,"INSERT INTO client (nom,prenom,adresse,email,motDePasse) VALUES ('$nom','$prenom','$adresse','$email','$motDePasse')")or die("erreur");
+            $this->quartier=$quartier;
+            mysqli_query($co,"INSERT INTO client (nom,prenom,adresse,email,motDePasse,quartier) VALUES ('$nom','$prenom','$adresse','$email','$motDePasse','$quartier')")or die("erreur");
         }
     
         function __construct2($co, $email, $motDePasse) {

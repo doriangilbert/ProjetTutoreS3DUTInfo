@@ -363,34 +363,57 @@
               </div>
               
       </form> -->
-
-      <?php
-          require_once("../modeles/bd.php");
-          $host = "localhost";
-          $user = "admin";
-          $bdd = "tutore_s3";
-          $passwd = "admin";
-          $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
-          $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
-          if(false!==$result)
-          {
-              if(mysqli_num_rows($result)>0)
-              {
-                  echo "<table>";
-                  $row = mysqli_fetch_assoc($result);
-                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Quantité désirée</th></tr>";
-                  do
-                  {
-                      echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
-                      max='100'></td></tr>";
-                  }
-                  while($row = mysqli_fetch_row($result));
-                  echo "</table>";
-              }
-              mysqli_free_result($result);    
-          }
-        ?>
-
+      <form method="post" action="../controleurs/catalogue.php">
+        <?php
+            require_once("../modeles/bd.php");
+            $host = "localhost";
+            $user = "admin";
+            $bdd = "tutore_s3";
+            $passwd = "admin";
+            $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+            $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
+            if(false!==$result)
+            {
+                if(mysqli_num_rows($result)>0)
+                {
+                    echo "<table>";
+                    $row = mysqli_fetch_assoc($result);
+                    echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Quantité désirée</th></tr>";
+                    $rowNum=1;
+                    do
+                    {
+                        if($rowNum==1){
+                          $numProduit=$row["numProduit"];
+                        }
+                        if($rowNum>1){
+                          $numProduit=$row[0];
+                        }
+                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                        max='100'></td></tr>";
+                        $rowNum++;
+                    }
+                    while($row = mysqli_fetch_row($result));
+                    echo "</table>";
+                }
+                mysqli_free_result($result);    
+            }
+          ?>
+          <div class="container">
+            <div class="row">
+              <div class="col text-center">
+                <button class="btn btn-lg btn-secondary" style="margin-top: 3rem;" type="submit">Valider mon panier</button>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col text-center"> 
+                <p style="font-size: 3rem;">Ou</p>
+                <a href="formulaire_reguliere.php" class = "btn btn-lg btn-secondary" role="button">Demander un panier de légumes surprise composé au gré des saisons</a>
+              </div>
+            </div>
+          </div>
+      </form>
     </main>
     
     <br>
