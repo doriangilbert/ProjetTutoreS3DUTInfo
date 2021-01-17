@@ -28,7 +28,7 @@
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="index.html">Accueil</a>
             <a class="nav-link" href="catalogue.php">Catalogue</a>
-            <a class="nav-link" href="connexion.html">Mon Compte</a>
+            <a class="nav-link" href="espace_producteur.html">Mon Compte</a>
           </nav>
         </div>
       </header>

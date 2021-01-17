@@ -17,14 +17,16 @@
     {
         $result=new Commande($co, $date, $today);
 
+        echo $result->get_numLivraison();
+
         /*$result = mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne) VALUES ('ponctuelle', 0, 0, '$date','$today', 1)");
         A corriger*/
     }
 
-    if ($result == false) {
+    /*if ($result == false) {
         header('Location: ../vues/invalide.html');
     }
     else {
         header('Location: ../vues/valide.html');
-    }
+    }*/
 ?>

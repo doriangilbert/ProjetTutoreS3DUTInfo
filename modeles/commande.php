@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once("../modeles/bd.php");
     class Commande {
         private $co;
@@ -37,6 +38,7 @@
             $this->dateCommande=$dateCommande;
             $this->nbPersonne=$nbPersonne;
             mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythmeLivraison', '$dateLivraison' , '$dateCommande' , '$nbPersonne')") or die;
+            $this->numLivraison = mysqli_insert_id($co);
         }
     
         function __construct2($co, $dateLivraison, $dateCommande, $nbPersonne) {
@@ -45,6 +47,7 @@
             $this->dateCommande=$dateCommande;
             $this->nbPersonne=$nbPersonne;
             mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('groupee', 0, 0, '$dateLivraison' , '$dateCommande' , '$nbPersonne')");
+            $this->numLivraison = mysqli_insert_id($co);
         }
 
         function __construct3($co, $dateLivraison, $dateCommande) {
@@ -52,6 +55,7 @@
             $this->dateLivraison=$dateLivraison;
             $this->dateLivraison=$dateLivraison;
             mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('ponctuelle', 0, 0, '$dateLivraison' , '$dateCommande' , 1)");
+            $this->numLivraison = mysqli_insert_id($co);
         }
 
         function __construct4($co, $numLivraison) {
@@ -85,6 +89,10 @@
 
         public function supprimer_article($nomFruitLeg) {
             mysqli_query($this->co,"DELETE FROM livraison NATURAL JOIN contient NATURAL JOIN produit WHERE nomFruitLeg='$nomFruitLeg' AND numLivraison='$this->numLivraison'");           
+        }
+
+        public function get_numLivraison() {
+            return $this->numLivraison;
         }
     }
 ?>

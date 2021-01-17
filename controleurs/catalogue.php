@@ -1,21 +1,45 @@
 <?php
+    session_start();
     require_once("../modeles/bd.php");
-    require_once("../modeles/produit.php");
     $host = "localhost";
     $user = "admin";
     $bdd = "tutore_s3";
     $passwd = "admin";
     $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
 
-    $quantite = array();
+    $array = array();
 
-    foreach ($_POST['numProduit'] as $value) {
-        array_push($quantite, $value);
+    $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
+    if(false!==$result)
+    {
+        if(mysqli_num_rows($result)>0)
+        {
+            $row = mysqli_fetch_assoc($result);
+            $rowNum=1;
+            do
+            {
+                if($rowNum==1){
+                    $numProduit=$row["numProduit"];
+                }
+                if($rowNum>1){
+                    $numProduit=$row[0];
+                }
+                $array[$numProduit] = $_POST[$numProduit];
+                $rowNum++;
+            }
+            while($row = mysqli_fetch_row($result));
+        }
+        mysqli_free_result($result);    
     }
 
-    foreach($array as $value) {
-        print $value;
-    }
+    $_SESSION["panier"]=$array;
 
-    //header('Location: ../vues/livraison.html');
+    /* A faire au dernier formulaire après voir récupéré l'array
+    foreach ($array as $key => $value) {
+        echo $key.','.$value.'|';
+        //INSERT INTO contient (numCommande,numProduit,quantite) VALUES (numCommande,$key,$value);
+    }
+    */
+
+    header('Location: ../vues/livraison.html');
 ?>

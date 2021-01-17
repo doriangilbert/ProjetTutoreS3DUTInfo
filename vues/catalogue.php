@@ -30,7 +30,7 @@
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link" href="index.html">Accueil</a>
           <a class="nav-link active" href="catalogue.php">Catalogue</a>
-          <a class="nav-link" href="connexion.html">Mon Compte</a>
+          <a class="nav-link" href="espace_client.html">Mon Compte</a>
         </nav>
       </div>
     </header>
@@ -372,6 +372,7 @@
             $passwd = "admin";
             $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
             $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
+
             if(false!==$result)
             {
                 if(mysqli_num_rows($result)>0)

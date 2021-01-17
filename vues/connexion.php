@@ -28,12 +28,38 @@
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="index.html">Accueil</a>
             <a class="nav-link" href="catalogue.php">Catalogue</a>
-            <a class="nav-link active" href="connexion.html">Mon Compte</a>
+            <a class="nav-link active" href="connexion.php">Mon Compte</a>
           </nav>
         </div>
       </header>
 
       <main class="form-signin">
+        <?php
+            require_once("../modeles/bd.php");
+            require_once("../modeles/membre.php");
+            $host = "localhost";
+            $user = "admin";
+            $bdd = "tutore_s3";
+            $passwd = "admin";
+            if(isset($_SESSION["email"]) && isset($_SESSION["motDePasse"]))
+            {
+                $email = $_SESSION["email"];
+                $motDePasse=$_SESSION["motDePasse"];
+                $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
+                $result=mysqli_query($co,"SELECT * FROM client WHERE email='$email' AND motDePasse='$motDePasse'");
+                if(!(mysqli_num_rows($result)==0)) {
+                    $membre=new Membre($co, $email, $motDePasse);
+                    $membre->connexion();
+                    $producteur=mysqli_fetch_assoc($result)["producteur"];
+                    if($producteur==true) {
+                        header('Location: ../vues/espace_producteur.html');
+                    }
+                    else {
+                        header('Location: ../vues/espace_client.html');
+                    }
+                }
+            }
+        ?>
         <form method="post" action="../controleurs/connexion.php">
           <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
           <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" name="email" required autofocus>
