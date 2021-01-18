@@ -26,7 +26,6 @@ a:hover {
 
 html,
 body {
-  height: 100%;
   /*background-color: #333;*/
   background: url("../images/ja-ma--gOUx23DNks-unsplash.jpg");
 }
@@ -46,6 +45,8 @@ body {
 .cover-container {
     min-width: 42em;
     max-width: 100% /*42em*/;
+    height: auto;
+    min-height: 100%;
     background-color: #00000091;
 }
 
@@ -111,6 +112,10 @@ table, th, td
 .btn-lg {
   background-color: #5FE77D;
   border: none;
+}
+img {
+  height: 10rem; 
+  width: auto;
 }
 
 

@@ -21,7 +21,7 @@
 
   <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex h-100 min-vh-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>
@@ -54,7 +54,7 @@
 
           <form method="post" action="../controleurs/suppr_commande.php">
             <?php
-            $result=mysqli_query($co,"SELECT * FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
+            $result=mysqli_query($co,"SELECT numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,statut,dateLivraison,dateCommande FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' AND statut !='valide' ORDER BY numLivraison");
             $var=1;
             if(false!==$result)
             {

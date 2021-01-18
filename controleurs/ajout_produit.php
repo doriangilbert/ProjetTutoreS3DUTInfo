@@ -11,12 +11,13 @@
     $quantite=$_POST["quantite"];
     $prix=$_POST["prix"];
     $promotion=$_POST["promotion"];
+    $lien=$_POST["lien"];
     $result=mysqli_query($co,"SELECT * FROM produit WHERE nomFruitLeg='$nomFruitLeg'");
     if(!(mysqli_num_rows($result)==0)) {
         header('Location: ../vues/prod_stocks.php');
     }
     else {
-        $produit=new Produit($co, $nomFruitLeg, $famille, $quantite, $prix, $promotion);
+        $produit=new Produit($co, $lien, $nomFruitLeg, $famille, $quantite, $prix, $promotion);
     }
     header('Location: ../vues/prod_stocks.php');
 ?>

@@ -21,7 +21,7 @@
 
   <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex h-100 min-vh-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>

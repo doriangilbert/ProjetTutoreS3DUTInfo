@@ -21,7 +21,7 @@
 
   <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex h-100 min-vh-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>
@@ -42,6 +42,7 @@
             <input type="number" id="inputQuantité" class="form-control" placeholder="Quantité" name="quantite" required>
             <input type="number" step=0.01 id="inputPrix" class="form-control" placeholder="Prix" name="prix" required>
             <input type="number" step=0.01 id="inputPromotion" class="form-control" placeholder="Promotion" name="promotion" required>
+            <input type="text" id="inputLien" class="form-control" placeholder="Lien Image" name="lien" required>
             <br>
             <button class="w-100 btn btn-lg btn-primary" type="submit" style="margin-bottom: 1rem;">Ajouter</button>
         </form>

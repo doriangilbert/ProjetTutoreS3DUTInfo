@@ -21,7 +21,7 @@
 
   <body class="text-center">
 
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex h-100 min-vh-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">LegFruIUT</h3>
@@ -43,22 +43,23 @@
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
           $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit, famille");
-          if(false!==$result)
-          {
-              if(mysqli_num_rows($result)>0)
-              {
-                  echo "<table>";
-                  $row = mysqli_fetch_assoc($result);
-                  echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th></tr>";
-                  do
-                  {
-                      echo "<tr><td>", implode("</td><td>", $row), "</td></tr>";
-                  }
-                  while($row = mysqli_fetch_row($result));
-                  echo "</table>";
-              }
-              mysqli_free_result($result);    
-          }
+
+          echo "<table>";
+          echo "<tr><th>Image</th><th>Numéro Produit</th><th>Nom Fruit Légume</th><th>Famille</th><th>Quantité</th><th>Prix</th><th>Promotion</th></tr>";
+
+          while($row = mysqli_fetch_array($result)) {
+                $lienImage = $row['lienImage'];
+                $numProduit = $row['numProduit'];
+                $nomFruitLeg = $row['nomFruitLeg'];
+                $famille = $row['famille'];
+                $quantite = $row['quantite'];
+                $prix = $row['prix'];
+                $promotion = $row['promotion'];
+                echo "<tr><td>"."<img src=$lienImage>"."</td><td>".$numProduit."</td><td>".$nomFruitLeg."</td><td>".$famille."</td><td>".$quantite."</td><td>".$prix."</td><td>".$promotion."</td></tr>";
+            } 
+
+            echo "</table>";
+
         ?>
         <a href="modif_stocks.html" class = "btn btn-lg btn-secondary" role="button" style="margin-top: 1rem">Modifier le stock</a>
       </main>

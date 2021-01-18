@@ -23,14 +23,14 @@
 
 <body class="text-center">
 
-  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+  <div class="cover-container d-flex h-100 min-vh-100 p-3 mx-auto flex-column">
     <header class="masthead">
       <div class="inner">
         <h3 class="masthead-brand">LegFruIUT</h3>
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link" href="index.html">Accueil</a>
           <a class="nav-link active" href="catalogue.php">Catalogue</a>
-          <a class="nav-link" href="espace_client.html">Mon Compte</a>
+          <a class="nav-link" href="espace_client.html">Mon Compte</a> <!--Si producteur clique sur catalogue puis mon compte : Bug-->
         </nav>
       </div>
     </header>
@@ -383,14 +383,30 @@
             $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
             $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
 
+            echo "<table>";
+            echo "<tr><th>Image</th><th>Numéro Produit</th><th>Nom Fruit Légume</th><th>Famille</th><th>Quantité</th><th>Prix</th><th>Promotion</th><th>Quantité désirée</th></tr>";
 
-            if(false!==$result)
+            while($row = mysqli_fetch_array($result)) {
+                $lienImage = $row['lienImage'];
+                $numProduit = $row['numProduit'];
+                $nomFruitLeg = $row['nomFruitLeg'];
+                $famille = $row['famille'];
+                $quantite = $row['quantite'];
+                $prix = $row['prix'];
+                $promotion = $row['promotion'];
+                echo "<tr><td>"."<img src=$lienImage>"."</td><td>".$numProduit."</td><td>".$nomFruitLeg."</td><td>".$famille."</td><td>".$quantite."</td><td>".$prix."</td><td>".$promotion."</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                max='$quantite'></td></tr>";
+            } 
+
+            echo "</table>";
+
+            /*if(false!==$result)
             {
                 if(mysqli_num_rows($result)>0)
                 {
                     echo "<table>";
                     $row = mysqli_fetch_assoc($result);
-                    echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Quantité désirée</th></tr>";
+                    echo "<tr><th>Image</th><th>", implode("</th><th>", array_keys($row)), "</th><th>Quantité désirée</th></tr>";
                     $rowNum=1;
                     do
                     {
@@ -402,7 +418,7 @@
                           $numProduit=$row[0];
                           $quantiteMax=$row[3];
                         }
-                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                        echo "<tr><td style='width: 2rem; height : 2rem'>"."<img src=$lienImage>"."</td><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
                         max='$quantiteMax'></td></tr>";
                         $rowNum++;
                     }
@@ -410,7 +426,7 @@
                     echo "</table>";
                 }
                 mysqli_free_result($result);    
-            }
+            }*/
           ?>
           <div class="container">
             <div class="row">
