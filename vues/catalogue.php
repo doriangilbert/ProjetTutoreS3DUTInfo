@@ -35,6 +35,16 @@
       </div>
     </header>
 
+    <?php
+      session_start();
+
+      if(!isset($_SESSION["email"]) && !isset($_SESSION["motDePasse"]))
+      {
+        header('Location: ../vues/connexion.php'); 
+      }
+
+    ?>
+
     <main role="main" class="inner cover">
 
       <h1 class="cover-heading">Catalogue</h1>
@@ -373,6 +383,7 @@
             $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
             $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
 
+
             if(false!==$result)
             {
                 if(mysqli_num_rows($result)>0)
@@ -385,12 +396,14 @@
                     {
                         if($rowNum==1){
                           $numProduit=$row["numProduit"];
+                          $quantiteMax=$row["quantite"];
                         }
                         if($rowNum>1){
                           $numProduit=$row[0];
+                          $quantiteMax=$row[3];
                         }
                         echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
-                        max='100'></td></tr>";
+                        max='$quantiteMax'></td></tr>";
                         $rowNum++;
                     }
                     while($row = mysqli_fetch_row($result));

@@ -12,7 +12,11 @@
     if(!(mysqli_num_rows($result)==0)) {
         $membre=new Membre($co, $email, $motDePasse);
         $membre->connexion();
-        $producteur=mysqli_fetch_assoc($result)["producteur"];
+        
+        $row = mysqli_fetch_assoc($result);
+        $producteur = $row["producteur"];
+        $_SESSION['numClient'] = $row["numClient"];
+        echo $_SESSION['numClient'];
         if($producteur==true) {
             header('Location: ../vues/espace_producteur.html');
         }

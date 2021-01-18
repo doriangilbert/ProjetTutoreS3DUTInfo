@@ -32,7 +32,7 @@
         mysqli_free_result($result);    
     }
 
-    $_SESSION["panier"]=$array;
+    $_SESSION["panier"] = $array;
 
     /* A faire au dernier formulaire après voir récupéré l'array
     foreach ($array as $key => $value) {

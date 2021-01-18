@@ -10,12 +10,13 @@
     $numLivraison=$_POST['numLivraison'];
     $mail = $_SESSION["email"];
 
-    echo $var;
+
+    echo $numLivraison;
 
     $result = mysqli_query($co,"SELECT * FROM livraison NATURAL JOIN client WHERE numLivraison='$numLivraison' AND email='$mail'");
     if(!(mysqli_num_rows($result)==0)) {
         $commande=new Commande($co, $numLivraison);
-        $commande->suppression_commande();       
+        //$commande->suppression_commande();       
     }
     else {
         //header('Location: ../vues/prod_stocks.php');

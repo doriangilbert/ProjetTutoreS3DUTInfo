@@ -54,7 +54,7 @@
 
           <form method="post" action="../controleurs/suppr_commande.php">
             <?php
-            $result=mysqli_query($co,"SELECT numLivraison,nomTypeLivraison,limitePrix,rythmeLivraison,dateLivraison,dateCommande,nbPersonne FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
+            $result=mysqli_query($co,"SELECT * FROM livraison NATURAL JOIN passe NATURAL JOIN client WHERE email='$email' AND motDePasse='$motDePasse' ORDER BY numLivraison");
             $var=1;
             if(false!==$result)
             {
@@ -63,9 +63,17 @@
                     echo "<table>";
                     $row = mysqli_fetch_assoc($result);
                     echo "<tr><th>", implode("</th><th>", array_keys($row)), "</th><th>Commande à supprimer</th></tr>";
+                    $rowNum=1;
                     do
                     {
-                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='button' value='Supprimer' name=$row[numLivraison]></td></tr>";
+                        if($rowNum==1){
+                          $numLivraison=$row["numLivraison"];
+                        }
+                        if($rowNum>1){
+                          $numLivraison=$row[0];
+                        }
+                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='submit' value='Supprimer' name='$numLivraison'></td></tr>";
+                        $rowNum++;
                     }
                     while($row = mysqli_fetch_row($result));
                     echo "</table>";

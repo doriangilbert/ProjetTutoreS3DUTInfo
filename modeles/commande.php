@@ -37,8 +37,16 @@
             $this->dateLivraison=$dateLivraison;
             $this->dateCommande=$dateCommande;
             $this->nbPersonne=$nbPersonne;
-            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythmeLivraison', '$dateLivraison' , '$dateCommande' , '$nbPersonne')") or die;
+            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, statut, dateLivraison, dateCommande, nbPersonne) VALUES ('reguliere', '$limitePrix', '$rythmeLivraison', 'En attente', '$dateLivraison' , '$dateCommande' , '$nbPersonne')") or die;
             $this->numLivraison = mysqli_insert_id($co);
+            mysqli_query($co,"INSERT INTO passe (numLivraison, numClient) VALUES ('$this->numLivraison', '$_SESSION[numClient]')");
+
+            $array = $_SESSION["panier"];
+
+            foreach ($array as $key => $value) {
+                mysqli_query($co,"INSERT INTO contient (numProduit,numLivraison,quantite) VALUES ('$key','$this->numLivraison','$value')");
+                mysqli_query($co,"UPDATE produit SET quantite = quantite - '$value' WHERE numProduit = '$key'");
+            }
         }
     
         function __construct2($co, $dateLivraison, $dateCommande, $nbPersonne) {
@@ -46,16 +54,33 @@
             $this->dateLivraison=$dateLivraison;
             $this->dateCommande=$dateCommande;
             $this->nbPersonne=$nbPersonne;
-            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('groupee', 0, 0, '$dateLivraison' , '$dateCommande' , '$nbPersonne')");
+            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, statut, dateLivraison, dateCommande, nbPersonne) VALUES ('groupee', 0, 0, 'En attente', '$dateLivraison' , '$dateCommande' , '$nbPersonne')");
             $this->numLivraison = mysqli_insert_id($co);
+            mysqli_query($co,"INSERT INTO passe (numLivraison, numClient) VALUES ('$this->numLivraison', '$_SESSION[numClient]')");
+
+            $array = $_SESSION["panier"];
+
+            foreach ($array as $key => $value) {
+                mysqli_query($co,"INSERT INTO contient (numProduit,numLivraison,quantite) VALUES ('$key','$this->numLivraison','$value')");
+                mysqli_query($co,"UPDATE produit SET quantite = quantite - '$value' WHERE numProduit = '$key'");
+            }
         }
 
         function __construct3($co, $dateLivraison, $dateCommande) {
             $this->co=$co;
             $this->dateLivraison=$dateLivraison;
             $this->dateLivraison=$dateLivraison;
-            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, dateLivraison, dateCommande, nbPersonne) VALUES ('ponctuelle', 0, 0, '$dateLivraison' , '$dateCommande' , 1)");
+            mysqli_query($co,"INSERT INTO livraison (nomTypeLivraison, limitePrix, rythmeLivraison, statut, dateLivraison, dateCommande, nbPersonne) VALUES ('ponctuelle', 0, 0, 'En attente', '$dateLivraison' , '$dateCommande' , 1)");
             $this->numLivraison = mysqli_insert_id($co);
+
+            mysqli_query($co,"INSERT INTO passe (numLivraison, numClient) VALUES ('$this->numLivraison', '$_SESSION[numClient]')");
+
+            $array = $_SESSION["panier"];
+
+            foreach ($array as $key => $value) {
+                mysqli_query($co,"INSERT INTO contient (numProduit,numLivraison,quantite) VALUES ('$key','$this->numLivraison','$value')");
+                mysqli_query($co,"UPDATE produit SET quantite = quantite - '$value' WHERE numProduit = '$key'");
+            }
         }
 
         function __construct4($co, $numLivraison) {

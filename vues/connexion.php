@@ -34,6 +34,8 @@
       </header>
 
       <main class="form-signin">
+        
+        <form method="post" action="../controleurs/connexion.php">
         <?php
             require_once("../modeles/bd.php");
             require_once("../modeles/membre.php");
@@ -50,7 +52,12 @@
                 if(!(mysqli_num_rows($result)==0)) {
                     $membre=new Membre($co, $email, $motDePasse);
                     $membre->connexion();
-                    $producteur=mysqli_fetch_assoc($result)["producteur"];
+                    
+                    $row = mysqli_fetch_assoc($result);
+                    $producteur = $row["producteur"];
+                    $_SESSION['numClient'] = $row["numClient"];
+                    /*$producteur=mysqli_fetch_assoc($result)["producteur"];
+                    $_SESSION['numClient']=mysqli_fetch_assoc($result)["numClient"];*/
                     if($producteur==true) {
                         header('Location: ../vues/espace_producteur.html');
                     }
@@ -60,7 +67,6 @@
                 }
             }
         ?>
-        <form method="post" action="../controleurs/connexion.php">
           <h1 class="h3 mb-3 fw-normal">Connectez vous</h1>
           <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" name="email" required autofocus>
           <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" name="motDePasse" required>

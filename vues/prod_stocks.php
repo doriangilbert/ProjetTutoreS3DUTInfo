@@ -42,7 +42,7 @@
           $bdd = "tutore_s3";
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
-          $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit");
+          $result=mysqli_query($co,"SELECT * FROM produit ORDER BY numProduit, famille");
           if(false!==$result)
           {
               if(mysqli_num_rows($result)>0)
