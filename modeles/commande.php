@@ -85,7 +85,7 @@
 
         function __construct4($co, $numLivraison) {
             $this->co=$co;
-            $this->dateLivraison=$numLivraison;
+            $this->numLivraison=$numLivraison;
         }
 
         public function suppression_commande() {

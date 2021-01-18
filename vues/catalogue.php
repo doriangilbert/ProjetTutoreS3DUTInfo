@@ -30,7 +30,7 @@
         <nav class="nav nav-masthead justify-content-center">
           <a class="nav-link" href="index.html">Accueil</a>
           <a class="nav-link active" href="catalogue.php">Catalogue</a>
-          <a class="nav-link" href="espace_client.html">Mon Compte</a> <!--Si producteur clique sur catalogue puis mon compte : Bug-->
+          <a class="nav-link" href="espace_client.html">Mon Compte</a>
         </nav>
       </div>
     </header>

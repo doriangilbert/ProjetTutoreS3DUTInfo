@@ -72,7 +72,8 @@
                         if($rowNum>1){
                           $numLivraison=$row[0];
                         }
-                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='submit' value='Supprimer' name='$numLivraison'></td></tr>";
+                        echo "<input name='numLivraison' type='hidden' value='$numLivraison'>";
+                        echo "<tr><td>", implode("</td><td>", $row), "</td><td><input type='submit' value='Supprimer'></td></tr>";
                         $rowNum++;
                     }
                     while($row = mysqli_fetch_row($result));

@@ -82,15 +82,13 @@
           $passwd = "admin";
           $co=(new Connexion($host, $user, $bdd, $passwd))->connexion();
           $email=$_SESSION["email"];
-          if(!isset($_SESSION["email"])) //A voir si on autorise les commandes si non connecté
+          if(!isset($_SESSION["email"]))
           {
             header('Location: ../vues/index.html');
           }
           $motDePasse=$_SESSION["motDePasse"];
 
           ?>
-
-          <!--Récupérer les articles du catalogue -->
 
           </form>
 
