@@ -55,6 +55,7 @@
                     
                     $row = mysqli_fetch_assoc($result);
                     $producteur = $row["producteur"];
+                    $_SESSION['producteur'] = $row["producteur"];
                     $_SESSION['numClient'] = $row["numClient"];
                     /*$producteur=mysqli_fetch_assoc($result)["producteur"];
                     $_SESSION['numClient']=mysqli_fetch_assoc($result)["numClient"];*/

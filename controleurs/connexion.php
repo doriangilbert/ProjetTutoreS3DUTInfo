@@ -15,6 +15,7 @@
         
         $row = mysqli_fetch_assoc($result);
         $producteur = $row["producteur"];
+        $_SESSION['producteur'] = $row["producteur"];
         $_SESSION['numClient'] = $row["numClient"];
         echo $_SESSION['numClient'];
         if($producteur==true) {

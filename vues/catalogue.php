@@ -394,8 +394,14 @@
                 $quantite = $row['quantite'];
                 $prix = $row['prix'];
                 $promotion = $row['promotion'];
-                echo "<tr><td>"."<img src=$lienImage>"."</td><td>".$numProduit."</td><td>".$nomFruitLeg."</td><td>".$famille."</td><td>".$quantite."</td><td>".$prix."</td><td>".$promotion."</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
-                max='$quantite'></td></tr>";
+                if ($quantite == 0)
+                {
+                  echo "<tr style=color:grey;><td>"."<img src=$lienImage>"."</td><td>".$numProduit."</td><td>".$nomFruitLeg."</td><td>".$famille."</td><td>".$quantite."</td><td>".$prix."</td><td>".$promotion."</td></tr>";
+                }
+                else {
+                  echo "<tr><td>"."<img src=$lienImage>"."</td><td>".$numProduit."</td><td>".$nomFruitLeg."</td><td>".$famille."</td><td>".$quantite."</td><td>".$prix."</td><td>".$promotion."</td><td><input type='number' id='inputNb' name='$numProduit' class='form-control' placeholder='Nombre' step='1' value='0' min='0'
+                  max='$quantite'></td></tr>";
+                }
             } 
 
             echo "</table>";
